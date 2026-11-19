@@ -1,0 +1,1 @@
+I have used a Docker compose to contanizer a postgres db for users in an application i have developed and an api to enable communication between components of the application. 
