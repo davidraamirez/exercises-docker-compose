@@ -1,5 +1,14 @@
 services:
 
+  db:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - database:/var/lib/postgresql
+
   frontend:
     image: daavidraamirez/frontend
     ports:
@@ -7,11 +16,19 @@ services:
   backend:
     image: daavidraamirez/backend
     restart: unless-stopped
+    depends_on:
+      - db
     ports:
       - 8080:8080
     environment:
       - REDIS_HOST=redis
       - REQUEST_ORIGIN=http://localhost:5001
-
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=postgres
   redis:
     image: redis  
+  
+volumes:
+  database:
