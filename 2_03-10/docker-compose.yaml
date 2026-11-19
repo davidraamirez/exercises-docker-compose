@@ -7,12 +7,13 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - database:/var/lib/postgresql
+      - ./database:/var/lib/postgresql
 
   frontend:
     image: daavidraamirez/frontend
     ports:
       - 5001:5001
+      
   backend:
     image: daavidraamirez/backend
     restart: unless-stopped
@@ -30,5 +31,3 @@ services:
   redis:
     image: redis  
   
-volumes:
-  database:
