@@ -1,0 +1,10 @@
+services:
+
+  frontend:
+    image: daavidraamirez/frontend
+    ports:
+      - 5001:5001
+  backend:
+    image: daavidraamirez/backend
+    ports:
+      - 8080:8080
