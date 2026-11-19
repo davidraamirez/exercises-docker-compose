@@ -30,4 +30,15 @@ services:
       - POSTGRES_DATABASE=postgres
   redis:
     image: redis  
+
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8000:80
+    depends_on:
+      - frontend
+      - backend
   
